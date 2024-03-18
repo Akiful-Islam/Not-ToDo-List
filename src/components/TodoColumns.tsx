@@ -1,7 +1,7 @@
 import { Todo } from "@/lib/data/types";
 import { ColumnDef } from "@tanstack/react-table";
 import { Button } from "@/components/ui/button";
-import { ArrowDown, ArrowUp, ArrowUpDown } from "lucide-react";
+import { ArrowDown, ArrowUp } from "lucide-react";
 
 export const todoColumns: ColumnDef<Todo>[] = [
   {
@@ -91,7 +91,11 @@ export const todoColumns: ColumnDef<Todo>[] = [
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Date Added
-          <ArrowUpDown className="ml-2 h-4 w-4" />
+          {column.getIsSorted() === "asc" ? (
+            <ArrowUp className="ml-2 h-4 w-4" />
+          ) : (
+            <ArrowDown className="ml-2 h-4 w-4" />
+          )}
         </Button>
       );
     },
