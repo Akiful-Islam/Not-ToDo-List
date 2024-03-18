@@ -11,6 +11,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { DatePicker } from "@/components/ui/custom/date-picker";
 
 type Props = {
   buttonLabel: string;
@@ -49,12 +50,16 @@ const AddTodo: React.FC<Props> = ({
               placeholder="Describe what not to do..."
             />
           </div>
-          <div className="grid grid-cols-4 items-center gap-4"></div>
-          <div className="grid grid-cols-4 items-center gap-4"></div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="dueDate" className="text-right">
+              Due Within
+            </Label>
+            <DatePicker />
+          </div>
           <div className="grid grid-cols-4 items-center gap-4"></div>
         </div>
         <DialogFooter>
-          <Button type="submit">Save changes</Button>
+          <Button type="submit">Add</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
