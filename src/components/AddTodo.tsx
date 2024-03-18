@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
-  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -17,6 +16,7 @@ import TodoDescription from "@/components/todo-form/TodoDescription";
 import TodoTitle from "@/components/todo-form/TodoTitle";
 import TodoDueDate from "@/components/todo-form/TodoDueDate";
 import TodoPriority from "./todo-form/TodoPriority";
+import { Todo } from "@/lib/data/types";
 import { useState } from "react";
 const todoSchema = z.object({
   title: z
@@ -42,11 +42,15 @@ type Props = {
   buttonLabel: string;
   dialogHeader: string;
   dialogDescription: string;
+  todos: Todo[];
+  setTodos: (todos: Todo[]) => void;
 };
 const AddTodo: React.FC<Props> = ({
   buttonLabel,
   dialogHeader,
   dialogDescription,
+  todos,
+  setTodos,
 }) => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const form = useForm<z.infer<typeof todoSchema>>({
@@ -61,6 +65,22 @@ const AddTodo: React.FC<Props> = ({
 
   const onSubmit = (data: z.infer<typeof todoSchema>) => {
     console.log(data);
+    const newTodo: Todo = {
+      id: todos.length + 1,
+      title: data.title,
+      description: data.description || "",
+      added: new Date(),
+      dueDate: data.dueDate,
+      priority: data.priority as
+        | "lowest"
+        | "low"
+        | "normal"
+        | "high"
+        | "highest",
+      completed: false,
+    };
+
+    setTodos([...todos, newTodo]);
     setDialogOpen(false);
   };
 

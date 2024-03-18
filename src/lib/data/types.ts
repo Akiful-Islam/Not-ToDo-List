@@ -3,7 +3,7 @@ export type Todo = {
   title: string;
   description: string;
   added: Date;
-  due: Date;
+  dueDate: Date;
   priority: "lowest" | "low" | "normal" | "high" | "highest";
   completed: boolean;
 };

@@ -12,6 +12,7 @@ import { DataTable } from "@/components/ui/custom/data-table";
 
 import { Todo } from "@/lib/data/types";
 import { ColumnDef } from "@tanstack/react-table";
+import { useState } from "react";
 
 const columns: ColumnDef<Todo>[] = [
   {
@@ -28,8 +29,8 @@ const columns: ColumnDef<Todo>[] = [
   },
   {
     header: "Due Date",
-    accessorKey: "due",
-    cell: ({ row }) => (row.getValue("due") as Date).toUTCString(),
+    accessorKey: "dueDate",
+    cell: ({ row }) => (row.getValue("dueDate") as Date).toUTCString(),
   },
   {
     header: "Status",
@@ -39,6 +40,8 @@ const columns: ColumnDef<Todo>[] = [
 ];
 
 const TodoBox = () => {
+  const [todos, setTodos] = useState(dummyData);
+
   return (
     <Card>
       <CardHeader>
@@ -48,10 +51,12 @@ const TodoBox = () => {
           buttonLabel="Add New"
           dialogHeader="Add A New not To Do"
           dialogDescription="Don't do it!"
+          todos={todos}
+          setTodos={setTodos}
         />
       </CardHeader>
       <CardContent>
-        <DataTable columns={columns} data={dummyData} />
+        <DataTable columns={columns} data={todos} />
       </CardContent>
     </Card>
   );
