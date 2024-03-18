@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 
 type Props = {
   buttonLabel: string;
@@ -42,7 +43,11 @@ const AddTodo: React.FC<Props> = ({
             <Label htmlFor="description" className="text-right">
               Description
             </Label>
-            <Input id="description" value="" className="col-span-3" />
+            <Textarea
+              id="description"
+              className="col-span-3"
+              placeholder="Describe what not to do..."
+            />
           </div>
           <div className="grid grid-cols-4 items-center gap-4"></div>
           <div className="grid grid-cols-4 items-center gap-4"></div>
