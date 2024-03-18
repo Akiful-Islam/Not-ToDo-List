@@ -30,6 +30,7 @@ const columns: ColumnDef<Todo>[] = [
   {
     header: "Status",
     accessorKey: "completed",
+    cell: ({ row }) => (row.getValue("completed") ? "Completed" : "Pending"),
   },
 ];
 
