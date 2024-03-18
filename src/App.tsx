@@ -1,10 +1,13 @@
 import "./App.css";
-import Start from "@/components/Start";
+import Start from "@/components/ui/custom/start";
+import TodoBox from "./components/TodoBox";
 
 function App() {
   return (
     <>
-      <Start>This is where I start</Start>
+      <Start>
+        <TodoBox />
+      </Start>
     </>
   );
 }
