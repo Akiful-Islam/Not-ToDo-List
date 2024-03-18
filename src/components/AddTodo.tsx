@@ -77,7 +77,7 @@ const AddTodo: React.FC<Props> = ({
             <div className="grid gap-4 py-4">
               <TodoTitle form={form} />
               <TodoDescription form={form} />
-
+              <TodoDueDate form={form} />
               <TodoPriority form={form} />
             </div>
             <DialogFooter>
