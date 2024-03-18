@@ -17,6 +17,7 @@ import TodoDescription from "@/components/todo-form/TodoDescription";
 import TodoTitle from "@/components/todo-form/TodoTitle";
 import TodoDueDate from "@/components/todo-form/TodoDueDate";
 import TodoPriority from "./todo-form/TodoPriority";
+import { useState } from "react";
 const todoSchema = z.object({
   title: z
     .string({
@@ -47,6 +48,7 @@ const AddTodo: React.FC<Props> = ({
   dialogHeader,
   dialogDescription,
 }) => {
+  const [dialogOpen, setDialogOpen] = useState(false);
   const form = useForm<z.infer<typeof todoSchema>>({
     resolver: zodResolver(todoSchema),
     defaultValues: {
@@ -59,10 +61,11 @@ const AddTodo: React.FC<Props> = ({
 
   const onSubmit = (data: z.infer<typeof todoSchema>) => {
     console.log(data);
+    setDialogOpen(false);
   };
 
   return (
-    <Dialog>
+    <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
       <DialogTrigger asChild>
         <Button variant="outline">{buttonLabel}</Button>
       </DialogTrigger>
@@ -80,9 +83,7 @@ const AddTodo: React.FC<Props> = ({
               <TodoPriority form={form} />
             </div>
             <DialogFooter>
-              <DialogClose asChild>
-                <Button type="submit">Add</Button>
-              </DialogClose>
+              <Button type="submit">Add</Button>
             </DialogFooter>
           </form>
         </Form>
