@@ -5,8 +5,23 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { PrioritySelect } from "@/components/PrioritySelect";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { UseFormReturn } from "react-hook-form";
+
+const priorities = [
+  { label: "Highest", value: "highest" },
+  { label: "High", value: "high" },
+  { label: "Normal", value: "normal" },
+  { label: "Low", value: "low" },
+  { label: "Lowest", value: "lowest" },
+];
+
 type Props = {
   form: UseFormReturn<{
     title: string;
@@ -24,15 +39,22 @@ const TodoPriority = ({ form }: Props) => {
         <FormItem>
           <div className="grid grid-cols-4 items-center gap-4">
             <FormLabel htmlFor="priority" className="text-right">
-              Priority
+              Due Date
             </FormLabel>
-            <FormControl>
-              <PrioritySelect
-                placeholder="Select"
-                selectLabel="Priority"
-                {...field}
-              />
-            </FormControl>
+            <Select onValueChange={field.onChange} defaultValue={field.value}>
+              <FormControl>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select priority" />
+                </SelectTrigger>
+              </FormControl>
+              <SelectContent>
+                {priorities.map((priority) => (
+                  <SelectItem key={priority.value} value={priority.value}>
+                    {priority.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
           <FormMessage />
         </FormItem>
