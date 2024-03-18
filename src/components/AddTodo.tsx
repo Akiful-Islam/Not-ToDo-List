@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { DatePicker } from "@/components/ui/custom/date-picker";
+import { PrioritySelect } from "@/components/PrioritySelect";
 
 type Props = {
   buttonLabel: string;
@@ -56,7 +57,12 @@ const AddTodo: React.FC<Props> = ({
             </Label>
             <DatePicker />
           </div>
-          <div className="grid grid-cols-4 items-center gap-4"></div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="priority" className="text-right">
+              Priority
+            </Label>
+            <PrioritySelect placeholder="Select" selectLabel="Priority" />
+          </div>
         </div>
         <DialogFooter>
           <Button type="submit">Add</Button>
