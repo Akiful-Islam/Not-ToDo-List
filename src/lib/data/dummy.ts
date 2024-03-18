@@ -17,7 +17,7 @@ export const dummyData: Todo[] = [
     added: new Date("2023-04-05"),
     due: new Date("2023-05-05"),
     priority: "high",
-    completed: false,
+    completed: true,
   },
   {
     id: 3,
@@ -26,7 +26,7 @@ export const dummyData: Todo[] = [
     added: new Date("2024-02-01"),
     due: new Date("2024-03-01"),
     priority: "normal",
-    completed: false,
+    completed: true,
   },
   {
     id: 4,
