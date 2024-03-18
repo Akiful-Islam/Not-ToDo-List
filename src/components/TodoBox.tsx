@@ -1,4 +1,5 @@
 import { PROJECT_TITLE } from "@/lib/data/projectInfo";
+import AddTodo from "./AddTodo";
 
 const TodoBox = () => {
   return (
@@ -14,6 +15,11 @@ const TodoBox = () => {
         <h1 className="text-4xl font-extrabold font-serif tracking-tight lg:text-5xl">
           {PROJECT_TITLE}
         </h1>
+        <AddTodo
+          buttonLabel="Add New"
+          dialogHeader="Add A New not To Do"
+          dialogDescription="Don't do it!"
+        />
       </div>
     </div>
   );
