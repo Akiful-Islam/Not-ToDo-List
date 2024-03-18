@@ -1,30 +1,20 @@
-# React + TypeScript + Vite
+# Not To Do
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+You've seen enough to-do list managers in your life. Now, focus on what truly matters by keeping track of what **Not To Do**
 
-Currently, two official plugins are available:
+## How to Use
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. **Add a Not To Do**: Click on the 'Add' button to add something to not do.
+2. **Set a Priority**: Use the priority flag to set the importance of the item. The more important it is, the less you care.
+3. **Check Off**: Once you've successfully avoided a task, check it off your list. Feel the satisfaction of not doing!
+4. **Review Your Progress**: Check your statistics to see your progress and find out how much you've procrastinated.
 
-## Expanding the ESLint configuration
+## Installation
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Clone this repository and install the dependencies using your package manager of choice. Bun is recommended.
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```bash
+git clone https://github.com/Akiful-Islam/arian-todo-app
+cd arian-nottodo-app
+npm install
 ```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
