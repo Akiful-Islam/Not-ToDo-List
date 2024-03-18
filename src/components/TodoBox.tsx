@@ -21,6 +21,10 @@ const columns: ColumnDef<Todo>[] = [
   {
     header: "Priority",
     accessorKey: "priority",
+    cell: ({ row }) => {
+      const priority: string = row.getValue("priority") as string;
+      return priority.charAt(0).toUpperCase() + priority.slice(1);
+    },
   },
   {
     header: "Due Date",
