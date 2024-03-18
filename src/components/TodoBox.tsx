@@ -10,10 +10,19 @@ import AddTodo from "./AddTodo";
 import { DataTable } from "@/components/ui/custom/data-table";
 
 import { Todo } from "@/lib/data/types";
+import { useEffect, useState } from "react";
+import { getLocalTodos } from "@/lib/storeTodos";
 import { todoColumns } from "./TodoColumns";
 
 const TodoBox = () => {
-  const [todos, setTodos] = useState(dummyData);
+  const [todos, setTodos] = useState<Todo[]>([]);
+
+  useEffect(() => {
+    const localTodos = getLocalTodos();
+    if (localTodos) {
+      setTodos(localTodos);
+    }
+  }, []);
 
   return (
     <Card>

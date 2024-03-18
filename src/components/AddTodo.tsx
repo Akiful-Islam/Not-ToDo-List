@@ -18,6 +18,7 @@ import TodoDueDate from "@/components/todo-form/TodoDueDate";
 import TodoPriority from "./todo-form/TodoPriority";
 import { Todo } from "@/lib/data/types";
 import { useState } from "react";
+import { setLocalTodos } from "@/lib/storeTodos";
 const todoSchema = z.object({
   title: z
     .string({
@@ -81,6 +82,8 @@ const AddTodo: React.FC<Props> = ({
     };
 
     setTodos([...todos, newTodo]);
+    setLocalTodos([...todos, newTodo]);
+    form.reset();
     setDialogOpen(false);
   };
 
