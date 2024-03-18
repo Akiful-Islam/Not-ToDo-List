@@ -5,7 +5,7 @@ const TodoBox = () => {
   return (
     <div
       className={`h-[80vh] w-[25vw] bg-gray-300
-                m-12 py-8 px-4 rounded-lg
+                m-12 py-12 px-8 rounded-lg
                 transition-all ease-linear duration-100 hover:shadow-lg hover:scale-[1.01]`}
     >
       <div
