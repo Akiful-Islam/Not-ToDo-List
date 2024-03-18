@@ -17,23 +17,43 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { FormControl } from "@/components/ui/form";
+import { ControllerRenderProps } from "react-hook-form";
 
-export function DatePicker() {
+export function DatePicker({
+  field,
+}: {
+  field: ControllerRenderProps<
+    {
+      title: string;
+      priority: string;
+      dueDate: Date;
+      description?: string | undefined;
+    },
+    "title"
+  >;
+}) {
   const [date, setDate] = React.useState<Date>();
 
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button
-          variant={"outline"}
-          className={cn(
-            "w-[240px] justify-start text-left font-normal",
-            !date && "text-muted-foreground"
-          )}
-        >
-          <CalendarIcon className="mr-2 h-4 w-4" />
-          {date ? format(date, "PPP") : <span>Pick a date</span>}
-        </Button>
+        <FormControl>
+          <Button
+            variant={"outline"}
+            className={cn(
+              "w-[240px] pl-3 text-left font-normal",
+              !field.value && "text-muted-foreground"
+            )}
+          >
+            {field.value ? (
+              format(field.value, "PPP")
+            ) : (
+              <span>Pick a date</span>
+            )}
+            <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+          </Button>
+        </FormControl>
       </PopoverTrigger>
       <PopoverContent
         align="start"

@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -8,11 +9,34 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
+import { Form } from "@/components/ui/form";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { DatePicker } from "@/components/ui/custom/date-picker";
-import { PrioritySelect } from "@/components/PrioritySelect";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import TodoDescription from "@/components/todo-form/TodoDescription";
+import TodoTitle from "@/components/todo-form/TodoTitle";
+import TodoDueDate from "@/components/todo-form/TodoDueDate";
+import TodoPriority from "./todo-form/TodoPriority";
+const todoSchema = z.object({
+  title: z
+    .string({
+      required_error: "Title is required",
+      invalid_type_error: "Title must be a string",
+    })
+    .min(1),
+  description: z.string().optional(),
+  dueDate: z.date({
+    required_error: "Please select when you do not want to do this",
+    invalid_type_error: "Due date must be a date",
+  }),
+  priority: z.string().refine(
+    (value) => {
+      return ["lowest", "low", "normal", "high", "highest"].includes(value);
+    },
+    { message: "Invalid priority" }
+  ),
+});
 
 type Props = {
   buttonLabel: string;
@@ -24,6 +48,20 @@ const AddTodo: React.FC<Props> = ({
   dialogHeader,
   dialogDescription,
 }) => {
+  const form = useForm<z.infer<typeof todoSchema>>({
+    resolver: zodResolver(todoSchema),
+    defaultValues: {
+      title: "",
+      description: "",
+      dueDate: new Date(),
+      priority: "normal",
+    },
+  });
+
+  const onSubmit = (data: z.infer<typeof todoSchema>) => {
+    console.log(data);
+  };
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -34,39 +72,21 @@ const AddTodo: React.FC<Props> = ({
           <DialogTitle>{dialogHeader}</DialogTitle>
           <DialogDescription>{dialogDescription}</DialogDescription>
         </DialogHeader>
-        <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="title" className="text-right">
-              Title
-            </Label>
-            <Input id="title" className="col-span-3" />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="description" className="text-right">
-              Description
-            </Label>
-            <Textarea
-              id="description"
-              className="col-span-3"
-              placeholder="Describe what not to do..."
-            />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="dueDate" className="text-right">
-              Due Within
-            </Label>
-            <DatePicker />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="priority" className="text-right">
-              Priority
-            </Label>
-            <PrioritySelect placeholder="Select" selectLabel="Priority" />
-          </div>
-        </div>
-        <DialogFooter>
-          <Button type="submit">Add</Button>
-        </DialogFooter>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)}>
+            <div className="grid gap-4 py-4">
+              <TodoTitle form={form} />
+              <TodoDescription form={form} />
+
+              <TodoPriority form={form} />
+            </div>
+            <DialogFooter>
+              <DialogClose asChild>
+                <Button type="submit">Add</Button>
+              </DialogClose>
+            </DialogFooter>
+          </form>
+        </Form>
       </DialogContent>
     </Dialog>
   );
