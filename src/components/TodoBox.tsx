@@ -5,17 +5,33 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
 import { PROJECT_TITLE } from "@/lib/data/projectInfo";
 import AddTodo from "./AddTodo";
 import { dummyData } from "@/lib/data/dummy";
+import { DataTable } from "@/components/ui/custom/data-table";
+
+import { Todo } from "@/lib/data/types";
+import { ColumnDef } from "@tanstack/react-table";
+
+const columns: ColumnDef<Todo>[] = [
+  {
+    header: "Title",
+    accessorKey: "title",
+  },
+  {
+    header: "Priority",
+    accessorKey: "priority",
+  },
+  {
+    header: "Due Date",
+    accessorKey: "due",
+    cell: ({ row }) => (row.getValue("due") as Date).toUTCString(),
+  },
+  {
+    header: "Status",
+    accessorKey: "completed",
+  },
+];
 
 const TodoBox = () => {
   return (
@@ -30,28 +46,7 @@ const TodoBox = () => {
         />
       </CardHeader>
       <CardContent>
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Title</TableHead>
-              <TableHead>Priority</TableHead>
-              <TableHead>Due Date</TableHead>
-              <TableHead className="text-right">Status</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {dummyData.map((todo) => (
-              <TableRow key={todo.id}>
-                <TableCell>{todo.title}</TableCell>
-                <TableCell>{todo.priority}</TableCell>
-                <TableCell>{todo.due.toDateString()}</TableCell>
-                <TableCell className="text-right">
-                  {todo.completed ? "Completed" : "Pending"}
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+        <DataTable columns={columns} data={dummyData} />
       </CardContent>
     </Card>
   );
