@@ -7,12 +7,10 @@ import {
 } from "@/components/ui/card";
 import { PROJECT_TITLE } from "@/lib/data/projectInfo";
 import AddTodo from "./AddTodo";
-import { DataTable } from "@/components/ui/custom/data-table";
 
 import { Todo } from "@/lib/data/types";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { getLocalTodos } from "@/lib/storeTodos";
-import { todoColumns } from "./TodoColumns";
 import TodoItem from "./TodoItem";
 
 const TodoBox = () => {
