@@ -63,7 +63,6 @@ const TodoItem: React.FC<Props> = ({
     setLocalTodos(newTodos);
     setComplete(!complete);
   };
-  const onUpdate = () => {};
   const onDelete = () => {};
   return (
     <Card className="hover:scale-105 transition-all ease-in-out duration-100 m-2 cursor-pointer w-full mb-4">
@@ -103,9 +102,6 @@ const TodoItem: React.FC<Props> = ({
                 Delete
               </Button>
               <AddTodo
-                buttonLabel="Update"
-                dialogHeader="Update Your not To Do"
-                dialogDescription="Don't do it!"
                 todos={todos}
                 setTodos={setTodos}
                 defaultTodo={{

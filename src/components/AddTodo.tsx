@@ -40,25 +40,21 @@ const todoSchema = z.object({
 });
 
 type Props = {
-  buttonLabel: string;
-  dialogHeader: string;
-  dialogDescription: string;
+  defaultTodo?: Todo;
   todos: Todo[];
   setTodos: (todos: Todo[]) => void;
-  defaultTodo?: Todo;
 };
-const AddTodo: React.FC<Props> = ({
-  buttonLabel,
-  dialogHeader,
-  dialogDescription,
-  todos,
-  setTodos,
-  defaultTodo,
-}) => {
+const AddTodo: React.FC<Props> = ({ todos, setTodos, defaultTodo }) => {
   const [dialogOpen, setDialogOpen] = useState(false);
 
+  let buttonLabel = "Add New";
+  let dialogHeader = "Add A New not To Do";
+  let dialogDescription = "What do you not want to do?";
   if (defaultTodo) {
     defaultTodo.dueDate = new Date(defaultTodo.dueDate);
+    buttonLabel = "Edit";
+    dialogHeader = "Edit Your not To Do";
+    dialogDescription = "Change your mind?";
   }
   const form = useForm<z.infer<typeof todoSchema>>({
     resolver: zodResolver(todoSchema),

@@ -21,13 +21,7 @@ const TodoBox = () => {
       <CardHeader>
         <CardTitle>{PROJECT_TITLE}</CardTitle>
         <CardDescription>Your Not To Do List</CardDescription>
-        <AddTodo
-          buttonLabel="Add New"
-          dialogHeader="Add A New not To Do"
-          dialogDescription="Don't do it!"
-          todos={todos}
-          setTodos={setTodos}
-        />
+        <AddTodo todos={todos} setTodos={setTodos} />
       </CardHeader>
       <CardContent className="pl-2">
         {todos.map((todo, index) => (
