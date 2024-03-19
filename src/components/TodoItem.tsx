@@ -65,7 +65,7 @@ const TodoItem: React.FC<Props> = ({
   };
   const onDelete = () => {};
   return (
-    <Card className="hover:scale-105 transition-all ease-in-out duration-100 m-2 cursor-pointer w-full mb-4">
+    <Card className="hover:scale-105 2xl:hover:scale-[1.01] xl:hover:scale-[1.02] lg:hover:scale-[1.03] transition-all ease-in-out duration-100 m-2 cursor-pointer w-full mb-4">
       <CardContent
         className={`px-4 py-2 text-left flex justify-between ${
           complete ? "line-through" : ""
