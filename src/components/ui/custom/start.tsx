@@ -8,7 +8,7 @@ const Start = ({ children }: Props) => {
   return (
     <div className="h-screen w-screen">
       <div className="flex flex-col items-center justify-center h-full">
-        <p className="">{children}</p>
+        {children}
       </div>
     </div>
   );

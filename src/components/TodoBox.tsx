@@ -17,7 +17,7 @@ const TodoBox = () => {
   const [todos, setTodos] = useState<Todo[]>(getLocalTodos());
 
   return (
-    <Card>
+    <Card className="2xl:w-2/5 lg:w-2/5">
       <CardHeader>
         <CardTitle>{PROJECT_TITLE}</CardTitle>
         <CardDescription>Your Not To Do List</CardDescription>
@@ -29,7 +29,7 @@ const TodoBox = () => {
           setTodos={setTodos}
         />
       </CardHeader>
-      <CardContent>
+      <CardContent className="pl-2">
         {todos.map((todo, index) => (
           <TodoItem
             key={index}
