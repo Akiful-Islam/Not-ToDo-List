@@ -16,14 +16,7 @@ import { todoColumns } from "./TodoColumns";
 import TodoItem from "./TodoItem";
 
 const TodoBox = () => {
-  const [todos, setTodos] = useState<Todo[]>([]);
-
-  useEffect(() => {
-    const localTodos = getLocalTodos();
-    if (localTodos) {
-      setTodos(localTodos);
-    }
-  }, []);
+  const [todos, setTodos] = useState<Todo[]>(getLocalTodos());
 
   return (
     <Card>

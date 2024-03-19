@@ -6,7 +6,7 @@ export const getLocalTodos = () => {
   if (localTodos) {
     try {
       const parsedTodos = JSON.parse(localTodos);
-      setLocalTodos(parsedTodos);
+      return parsedTodos;
     } catch (error) {
       console.error("Error parsing stored todos:", error);
     }

@@ -75,9 +75,8 @@ const AddTodo: React.FC<Props> = ({
       priority: data.priority as Priority,
       completed: false,
     };
-
-    setTodos([...todos, newTodo]);
     setLocalTodos([...todos, newTodo]);
+    setTodos([...todos, newTodo]);
     form.reset();
     setDialogOpen(false);
   };
