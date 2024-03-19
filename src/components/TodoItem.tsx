@@ -71,65 +71,76 @@ const TodoItem: React.FC<Props> = ({
     setLocalTodos(newTodos);
     setDialogOpen(false);
   };
+
+  const handleTodoClick = (e: React.MouseEvent) => {
+    const target = e.target as HTMLElement;
+    if (target.id !== "todo-check") {
+      setDialogOpen(!dialogOpen);
+    }
+  };
   return (
     <Card className="hover:scale-105 2xl:hover:scale-[1.01] xl:hover:scale-[1.02] lg:hover:scale-[1.03] transition-all ease-in-out duration-100 m-2 cursor-pointer w-full mb-4">
       <CardContent
         className={`px-4 py-2 text-left flex justify-between ${
           complete ? "line-through" : ""
         }`}
+        onClick={handleTodoClick}
       >
-        <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-          <DialogTrigger className="flex justify-between">
-            <Label
-              className={`hover:underline transition-all ease-in duration-75 cursor-pointer`}
-            >
-              {title}
-            </Label>
-          </DialogTrigger>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle className="text-2xl">{title}</DialogTitle>
-              <DialogDescription className="text-lg font-medium">
-                {description}
-              </DialogDescription>
-            </DialogHeader>
-            <Label
-              className={`text-base font-medium ${priorityColor[priority]} ${
-                priority === "highest" ? "animate-pulse" : ""
-              }`}
-            >
-              Priority: {priority}
-            </Label>
-            <Label className="text-base font-medium">
-              Due Within: {dateDue}
-            </Label>
-            <Label className="text-base font-light">Added: {dateAdded}</Label>
-            <DialogFooter className="">
-              <Button variant={"destructive"} onClick={onDelete}>
-                Delete
-              </Button>
-              <AddOrUpdateTodo
-                todos={todos}
-                setTodos={setTodos}
-                defaultTodo={{
-                  id,
-                  title,
-                  description,
-                  added,
-                  dueDate,
-                  priority,
-                  completed,
-                }}
-              />
-            </DialogFooter>
-          </DialogContent>
-        </Dialog>
+        <Label
+          className={`hover:underline transition-all ease-in duration-75 cursor-pointer`}
+        >
+          {title}
+        </Label>
         <Checkbox
           id="todo-check"
           defaultChecked={complete}
           onCheckedChange={onCheck}
         />
       </CardContent>
+      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle className="text-2xl">{title}</DialogTitle>
+            <DialogDescription className="text-lg font-medium">
+              {description}
+            </DialogDescription>
+          </DialogHeader>
+          <Label
+            className={`text-base font-medium ${
+              complete ? "text-green-500" : "text-yellow-500"
+            }`}
+          >
+            {complete ? "Completed" : "Pending"}
+          </Label>
+          <Label
+            className={`text-base font-medium ${priorityColor[priority]} ${
+              priority === "highest" ? "animate-pulse" : ""
+            }`}
+          >
+            Priority: {priority}
+          </Label>
+          <Label className="text-base font-medium">Due Within: {dateDue}</Label>
+          <Label className="text-base font-light">Added: {dateAdded}</Label>
+          <DialogFooter className="">
+            <Button variant={"destructive"} onClick={onDelete}>
+              Delete
+            </Button>
+            <AddOrUpdateTodo
+              todos={todos}
+              setTodos={setTodos}
+              defaultTodo={{
+                id,
+                title,
+                description,
+                added,
+                dueDate,
+                priority,
+                completed,
+              }}
+            />
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </Card>
   );
 };
