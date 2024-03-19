@@ -85,7 +85,7 @@ const AddOrUpdateTodo: React.FC<Props> = ({ todos, setTodos, defaultTodo }) => {
 
   return (
     <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-      <DialogTrigger asChild>
+      <DialogTrigger>
         <Button variant="outline">{buttonLabel}</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">

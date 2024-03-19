@@ -49,6 +49,8 @@ const TodoItem: React.FC<Props> = ({
 }) => {
   const [complete, setComplete] = useState(completed);
 
+  const [dialogOpen, setDialogOpen] = useState(false);
+
   const dateAdded = new Date(added).toDateString();
   const dateDue = new Date(dueDate).toDateString();
 
@@ -63,7 +65,12 @@ const TodoItem: React.FC<Props> = ({
     setLocalTodos(newTodos);
     setComplete(!complete);
   };
-  const onDelete = () => {};
+  const onDelete = () => {
+    const newTodos = todos.filter((todo) => todo.id !== id);
+    setTodos(newTodos);
+    setLocalTodos(newTodos);
+    setDialogOpen(false);
+  };
   return (
     <Card className="hover:scale-105 2xl:hover:scale-[1.01] xl:hover:scale-[1.02] lg:hover:scale-[1.03] transition-all ease-in-out duration-100 m-2 cursor-pointer w-full mb-4">
       <CardContent
@@ -71,7 +78,7 @@ const TodoItem: React.FC<Props> = ({
           complete ? "line-through" : ""
         }`}
       >
-        <Dialog>
+        <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
           <DialogTrigger className="flex justify-between">
             <Label
               className={`hover:underline transition-all ease-in duration-75 cursor-pointer`}
