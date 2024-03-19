@@ -1,6 +1,10 @@
 # Not To Do
+![image](https://github.com/Akiful-Islam/Not-ToDo-List/assets/53114895/9337fbb1-bc95-467e-ad75-99a6e6baec16)
 
-You've seen enough to-do list managers in your life. Now, focus on what truly matters by keeping track of what **Not To Do**
+You've seen enough to-do list managers in your life. Now, focus on what truly matters by keeping track of what **Not To Do** 
+
+## Demo
+You can try out the live version of the app [Here](https://do-not-do.vercel.app/)
 
 ## How to Use
 
@@ -14,7 +18,7 @@ You've seen enough to-do list managers in your life. Now, focus on what truly ma
 Clone this repository and install the dependencies using your package manager of choice. Bun is recommended.
 
 ```bash
-git clone https://github.com/Akiful-Islam/arian-todo-app
-cd arian-nottodo-app
+git clone https://github.com/Akiful-Islam/Not-ToDo-List
+cd Not-ToDo-List
 npm install
 ```
