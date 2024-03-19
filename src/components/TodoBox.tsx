@@ -33,12 +33,15 @@ const TodoBox = () => {
         {todos.map((todo, index) => (
           <TodoItem
             key={index}
+            id={todo.id}
             title={todo.title}
             description={todo.description}
             added={todo.added}
             dueDate={todo.dueDate}
             priority={todo.priority}
             completed={todo.completed}
+            todos={todos}
+            setTodos={setTodos}
           />
         ))}
       </CardContent>
