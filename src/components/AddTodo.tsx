@@ -16,7 +16,7 @@ import TodoDescription from "@/components/todo-form/TodoDescription";
 import TodoTitle from "@/components/todo-form/TodoTitle";
 import TodoDueDate from "@/components/todo-form/TodoDueDate";
 import TodoPriority from "./todo-form/TodoPriority";
-import { Todo } from "@/lib/data/types";
+import { Priority, Todo } from "@/lib/data/types";
 import { useState } from "react";
 import { setLocalTodos } from "@/lib/storeTodos";
 const todoSchema = z.object({
@@ -72,12 +72,7 @@ const AddTodo: React.FC<Props> = ({
       description: data.description || "",
       added: new Date(),
       dueDate: data.dueDate,
-      priority: data.priority as
-        | "lowest"
-        | "low"
-        | "normal"
-        | "high"
-        | "highest",
+      priority: data.priority as Priority,
       completed: false,
     };
 

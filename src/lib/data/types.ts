@@ -1,9 +1,11 @@
+export type Priority = "lowest" | "low" | "normal" | "high" | "highest";
+
 export type Todo = {
   id: number;
   title: string;
   description: string;
   added: Date;
   dueDate: Date;
-  priority: "lowest" | "low" | "normal" | "high" | "highest";
+  priority: Priority;
   completed: boolean;
 };
