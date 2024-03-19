@@ -14,7 +14,7 @@ import {
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { setLocalTodos } from "@/lib/storeTodos";
-import AddTodo from "./AddTodo";
+import AddOrUpdateTodo from "./AddOrUpdateTodo";
 
 type Props = {
   id: number;
@@ -101,7 +101,7 @@ const TodoItem: React.FC<Props> = ({
               <Button variant={"destructive"} onClick={onDelete}>
                 Delete
               </Button>
-              <AddTodo
+              <AddOrUpdateTodo
                 todos={todos}
                 setTodos={setTodos}
                 defaultTodo={{

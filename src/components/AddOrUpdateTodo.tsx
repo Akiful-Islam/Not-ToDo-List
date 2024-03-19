@@ -44,7 +44,7 @@ type Props = {
   todos: Todo[];
   setTodos: (todos: Todo[]) => void;
 };
-const AddTodo: React.FC<Props> = ({ todos, setTodos, defaultTodo }) => {
+const AddOrUpdateTodo: React.FC<Props> = ({ todos, setTodos, defaultTodo }) => {
   const [dialogOpen, setDialogOpen] = useState(false);
 
   let buttonLabel = "Add New";
@@ -111,4 +111,4 @@ const AddTodo: React.FC<Props> = ({ todos, setTodos, defaultTodo }) => {
   );
 };
 
-export default AddTodo;
+export default AddOrUpdateTodo;

@@ -6,7 +6,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { PROJECT_TITLE } from "@/lib/data/projectInfo";
-import AddTodo from "./AddTodo";
+import AddOrUpdateTodo from "./AddOrUpdateTodo";
 
 import { Todo } from "@/lib/data/types";
 import { useState } from "react";
@@ -21,7 +21,7 @@ const TodoBox = () => {
       <CardHeader>
         <CardTitle>{PROJECT_TITLE}</CardTitle>
         <CardDescription>Your Not To Do List</CardDescription>
-        <AddTodo todos={todos} setTodos={setTodos} />
+        <AddOrUpdateTodo todos={todos} setTodos={setTodos} />
       </CardHeader>
       <CardContent className="pl-2">
         {todos.map((todo, index) => (
