@@ -1,11 +1,6 @@
 import { Priority, Todo } from "@/lib/data/types";
 import React, { useState } from "react";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
   Dialog,
@@ -19,6 +14,7 @@ import {
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { setLocalTodos } from "@/lib/storeTodos";
+import AddTodo from "./AddTodo";
 
 type Props = {
   id: number;
@@ -70,7 +66,7 @@ const TodoItem: React.FC<Props> = ({
   const onUpdate = () => {};
   const onDelete = () => {};
   return (
-    <Card className="hover:scale-105 transition-all ease-in-out duration-100 m-2 cursor-pointer w-full">
+    <Card className="hover:scale-105 transition-all ease-in-out duration-100 m-2 cursor-pointer w-full mb-4">
       <CardContent
         className={`px-4 py-2 text-left flex justify-between ${
           complete ? "line-through" : ""
@@ -106,9 +102,22 @@ const TodoItem: React.FC<Props> = ({
               <Button variant={"destructive"} onClick={onDelete}>
                 Delete
               </Button>
-              <Button variant={"outline"} onClick={onUpdate}>
-                Update
-              </Button>
+              <AddTodo
+                buttonLabel="Update"
+                dialogHeader="Update Your not To Do"
+                dialogDescription="Don't do it!"
+                todos={todos}
+                setTodos={setTodos}
+                defaultTodo={{
+                  id,
+                  title,
+                  description,
+                  added,
+                  dueDate,
+                  priority,
+                  completed,
+                }}
+              />
             </DialogFooter>
           </DialogContent>
         </Dialog>

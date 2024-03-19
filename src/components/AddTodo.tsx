@@ -45,6 +45,7 @@ type Props = {
   dialogDescription: string;
   todos: Todo[];
   setTodos: (todos: Todo[]) => void;
+  defaultTodo?: Todo;
 };
 const AddTodo: React.FC<Props> = ({
   buttonLabel,
@@ -52,11 +53,16 @@ const AddTodo: React.FC<Props> = ({
   dialogDescription,
   todos,
   setTodos,
+  defaultTodo,
 }) => {
   const [dialogOpen, setDialogOpen] = useState(false);
+
+  if (defaultTodo) {
+    defaultTodo.dueDate = new Date(defaultTodo.dueDate);
+  }
   const form = useForm<z.infer<typeof todoSchema>>({
     resolver: zodResolver(todoSchema),
-    defaultValues: {
+    defaultValues: defaultTodo || {
       title: "",
       description: "",
       dueDate: new Date(),
