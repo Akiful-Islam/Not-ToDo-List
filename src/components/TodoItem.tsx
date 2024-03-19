@@ -16,6 +16,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
+import { Button } from "./ui/button";
 
 type Props = {
   title: string;
@@ -24,6 +25,14 @@ type Props = {
   dueDate: Date;
   priority: Priority;
   completed: boolean;
+};
+
+const priorityColor = {
+  lowest: "text-green-400",
+  low: "text-green-500",
+  normal: "text-blue-500",
+  high: "text-yellow-500",
+  highest: "text-red-500",
 };
 
 const TodoItem: React.FC<Props> = ({
@@ -35,6 +44,12 @@ const TodoItem: React.FC<Props> = ({
   completed,
 }) => {
   const [complete, setComplete] = useState(completed);
+
+  const dateAdded = new Date(added).toDateString();
+  const dateDue = new Date(dueDate).toDateString();
+
+  const onUpdate = () => {};
+  const onDelete = () => {};
   return (
     <Card className="hover:scale-105 transition-all ease-in-out duration-100 m-2">
       <CardContent
@@ -43,7 +58,7 @@ const TodoItem: React.FC<Props> = ({
         }`}
       >
         <Dialog>
-          <DialogTrigger>
+          <DialogTrigger className="flex justify-between">
             <Label
               className={`hover:underline transition-all ease-in duration-75`}
             >
@@ -52,17 +67,30 @@ const TodoItem: React.FC<Props> = ({
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>{title}</DialogTitle>
-              <DialogDescription>{description}</DialogDescription>
+              <DialogTitle className="text-2xl">{title}</DialogTitle>
+              <DialogDescription className="text-lg font-medium">
+                {description}
+              </DialogDescription>
             </DialogHeader>
-            {/* <DialogFooter className="flex justify-between">
-              <p className="font-normal text-lg">
-                Added on: {added.toLocaleDateString()}
-              </p>
-              <p className="font-normal text-lg">
-                Due: {dueDate.toLocaleDateString()}
-              </p>
-            </DialogFooter> */}
+            <Label
+              className={`text-base font-medium ${priorityColor[priority]} ${
+                priority === "highest" ? "animate-pulse" : ""
+              }`}
+            >
+              Priority: {priority}
+            </Label>
+            <Label className="text-base font-medium">
+              Due Within: {dateDue}
+            </Label>
+            <Label className="text-base font-light">Added: {dateAdded}</Label>
+            <DialogFooter className="">
+              <Button variant={"destructive"} onClick={onDelete}>
+                Delete
+              </Button>
+              <Button variant={"outline"} onClick={onUpdate}>
+                Update
+              </Button>
+            </DialogFooter>
           </DialogContent>
         </Dialog>
       </CardContent>
