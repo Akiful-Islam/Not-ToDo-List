@@ -19,7 +19,9 @@ const TodoBox = () => {
   return (
     <Card className="2xl:w-2/5 lg:w-2/5">
       <CardHeader>
-        <CardTitle>{PROJECT_TITLE}</CardTitle>
+        <CardTitle className="2xl:text-4xl lg:text-3xl">
+          {PROJECT_TITLE}
+        </CardTitle>
         <CardDescription>Your Not To Do List</CardDescription>
         <AddOrUpdateTodo todos={todos} setTodos={setTodos} />
       </CardHeader>
