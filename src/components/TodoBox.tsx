@@ -13,6 +13,7 @@ import { Todo } from "@/lib/data/types";
 import { useEffect, useState } from "react";
 import { getLocalTodos } from "@/lib/storeTodos";
 import { todoColumns } from "./TodoColumns";
+import TodoItem from "./TodoItem";
 
 const TodoBox = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -38,7 +39,17 @@ const TodoBox = () => {
         />
       </CardHeader>
       <CardContent>
-        <DataTable columns={todoColumns} data={todos} />
+        {todos.map((todo, index) => (
+          <TodoItem
+            key={index}
+            title={todo.title}
+            description={todo.description}
+            added={todo.added}
+            dueDate={todo.dueDate}
+            priority={todo.priority}
+            completed={todo.completed}
+          />
+        ))}
       </CardContent>
     </Card>
   );
