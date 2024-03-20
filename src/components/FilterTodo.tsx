@@ -16,6 +16,7 @@ import {
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
+import SortItem from "./SortItem";
 
 type Props = {
   filter: Filter;
@@ -31,96 +32,27 @@ const FilterTodo: React.FC<Props> = ({ filter, setFilter }) => {
       <PopoverContent>
         <Label className="font-medium text-base">Sort by</Label>
         <div className="my-2 flex flex-col gap-1">
-          <div
-            className="flex justify-between hover:bg-neutral-100 rounded-md transition-all duration-150 ease-out cursor-pointer"
-            onClick={() => {
-              setFilter({
-                ...filter,
-                sort: {
-                  by: "added",
-                  direction:
-                    filter.sort.by === "added"
-                      ? filter.sort.direction === "asc"
-                        ? "desc"
-                        : "asc"
-                      : "asc",
-                },
-              });
-            }}
-          >
-            <Label htmlFor="added-sort" className="text-sm cursor-pointer">
-              Added on
-            </Label>
-            {filter.sort.by === "added" ? (
-              filter.sort.direction === "asc" ? (
-                <ArrowDown01Icon className="p-[3px]" />
-              ) : (
-                <ArrowUp01Icon className="p-[3px]" />
-              )
-            ) : (
-              <ArrowUpDownIcon className="p-[5px]" />
-            )}
-          </div>
-          <div
-            className="flex justify-between hover:bg-neutral-100 rounded-md transition-all duration-150 ease-out cursor-pointer"
-            onClick={() => {
-              setFilter({
-                ...filter,
-                sort: {
-                  by: "dueDate",
-                  direction:
-                    filter.sort.by === "dueDate"
-                      ? filter.sort.direction === "asc"
-                        ? "desc"
-                        : "asc"
-                      : "asc",
-                },
-              });
-            }}
-          >
-            <Label htmlFor="due-sort" className="text-sm cursor-pointer">
-              Due Date
-            </Label>
-            {filter.sort.by === "dueDate" ? (
-              filter.sort.direction === "asc" ? (
-                <ArrowDown01Icon className="p-[3px]" />
-              ) : (
-                <ArrowUp01Icon className="p-[3px]" />
-              )
-            ) : (
-              <ArrowUpDownIcon className="p-[5px]" />
-            )}
-          </div>
-          <div
-            className="flex justify-between hover:bg-neutral-100 rounded-md transition-all duration-150 ease-out cursor-pointer"
-            onClick={() => {
-              setFilter({
-                ...filter,
-                sort: {
-                  by: "title",
-                  direction:
-                    filter.sort.by === "title"
-                      ? filter.sort.direction === "asc"
-                        ? "desc"
-                        : "asc"
-                      : "asc",
-                },
-              });
-            }}
-          >
-            <Label htmlFor="title-sort" className="text-sm cursor-pointer">
-              Title
-            </Label>
-            {filter.sort.by === "title" ? (
-              filter.sort.direction === "asc" ? (
-                <ArrowDownAzIcon className="p-[3px]" />
-              ) : (
-                <ArrowUpAZIcon className="p-[3px]" />
-              )
-            ) : (
-              <ArrowUpDownIcon className="p-[5px]" />
-            )}
-          </div>
+          <SortItem
+            filter={filter}
+            setFilter={setFilter}
+            iconType="01"
+            label="Added"
+            sortType="added"
+          />
+          <SortItem
+            filter={filter}
+            setFilter={setFilter}
+            iconType="01"
+            label="Due Date"
+            sortType="dueDate"
+          />
+          <SortItem
+            filter={filter}
+            setFilter={setFilter}
+            iconType="AZ"
+            label="Title"
+            sortType="title"
+          />
         </div>
 
         <Label className="font-medium text-base">Show</Label>
@@ -148,6 +80,7 @@ const FilterTodo: React.FC<Props> = ({ filter, setFilter }) => {
             <Label htmlFor="option-pending">Pending</Label>
           </div>
         </RadioGroup>
+
         <Label className="font-medium text-base">Priority</Label>
         <div className="mt-2">
           <div className="flex flex-col justify-between gap-2">
