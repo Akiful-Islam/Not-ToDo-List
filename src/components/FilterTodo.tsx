@@ -1,22 +1,38 @@
 import React from "react";
-import { Filter } from "@/lib/data/types";
+import { Filter, Priority } from "@/lib/data/types";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import {
-  ArrowDown01Icon,
-  ArrowDownAzIcon,
-  ArrowUp01Icon,
-  ArrowUpAZIcon,
-  ArrowUpDownIcon,
-  SlidersHorizontal,
-} from "lucide-react";
+import { SlidersHorizontal } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Checkbox } from "@/components/ui/checkbox";
 import SortItem from "./SortItem";
+import PriorityItem from "./PriorityItem";
+
+const priorities = [
+  {
+    value: "lowest",
+    label: "Lowest",
+  },
+  {
+    value: "low",
+    label: "Low",
+  },
+  {
+    value: "normal",
+    label: "Normal",
+  },
+  {
+    value: "high",
+    label: "High",
+  },
+  {
+    value: "highest",
+    label: "Highest",
+  },
+];
 
 type Props = {
   filter: Filter;
@@ -84,26 +100,15 @@ const FilterTodo: React.FC<Props> = ({ filter, setFilter }) => {
         <Label className="font-medium text-base">Priority</Label>
         <div className="mt-2">
           <div className="flex flex-col justify-between gap-2">
-            <div className="flex items-center space-x-2">
-              <Checkbox id="lowest" />
-              <Label htmlFor="lowest">Lowest</Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <Checkbox id="low" />
-              <Label htmlFor="low">Low</Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <Checkbox id="normal" />
-              <Label htmlFor="normal">Normal</Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <Checkbox id="high" />
-              <Label htmlFor="high">High</Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <Checkbox id="highest" />
-              <Label htmlFor="highest">Highest</Label>
-            </div>
+            {priorities.map((priority, index) => (
+              <PriorityItem
+                key={index}
+                filter={filter}
+                setFilter={setFilter}
+                value={priority.value as Priority}
+                label={priority.label}
+              />
+            ))}
           </div>
         </div>
       </PopoverContent>
