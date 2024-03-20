@@ -76,17 +76,27 @@ const FilterTodo: React.FC<Props> = ({ filter, setFilter }) => {
         </div>
 
         <Label className="font-medium text-base">Show</Label>
-        <RadioGroup defaultValue="option-one" className="mt-2 mb-4 flex gap-6">
+        <RadioGroup
+          defaultValue="all"
+          className="mt-2 mb-4 flex gap-6"
+          onValueChange={(value) => {
+            setFilter({
+              ...filter,
+              complete:
+                value === "all" ? "all" : value === "complete" ? true : false,
+            });
+          }}
+        >
           <div className="flex items-center space-x-2">
-            <RadioGroupItem value="option-all" id="option-all" />
+            <RadioGroupItem value="all" id="option-all" />
             <Label htmlFor="option-all">All</Label>
           </div>
           <div className="flex items-center space-x-2">
-            <RadioGroupItem value="option-complete" id="option-complete" />
+            <RadioGroupItem value="complete" id="option-complete" />
             <Label htmlFor="option-complete">Complete</Label>
           </div>
           <div className="flex items-center space-x-2">
-            <RadioGroupItem value="option-pending" id="option-pending" />
+            <RadioGroupItem value="pending" id="option-pending" />
             <Label htmlFor="option-pending">Pending</Label>
           </div>
         </RadioGroup>

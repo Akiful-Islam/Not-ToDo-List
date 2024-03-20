@@ -22,7 +22,7 @@ const TodoBox = () => {
       direction: "asc",
     },
     complete: "all",
-    priority: "all",
+    priority: undefined,
   });
 
   return (

@@ -16,5 +16,5 @@ export type Filter = {
     direction: "asc" | "desc";
   };
   complete: boolean | "all";
-  priority: Priority | "all";
+  priority?: Priority[];
 };
