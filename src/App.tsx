@@ -5,7 +5,7 @@ import { ThemeProvider } from "@/components/ui/theme-provider";
 
 function App() {
   return (
-    <ThemeProvider>
+    <ThemeProvider defaultTheme="light">
       <Start>
         <TodoBox />
       </Start>
