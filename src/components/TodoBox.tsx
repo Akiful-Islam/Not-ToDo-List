@@ -9,21 +9,29 @@ import { PROJECT_TITLE } from "@/lib/data/projectInfo";
 import AddOrUpdateTodo from "./AddOrUpdateTodo";
 
 import { Filter, Todo } from "@/lib/data/types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getLocalTodos } from "@/lib/storeTodos";
 import TodoItem from "./TodoItem";
 import FilterTodo from "./FilterTodo";
+import { filterTodos } from "@/lib/filterTodos";
 
 const TodoBox = () => {
   const [todos, setTodos] = useState<Todo[]>(getLocalTodos());
   const [filter, setFilter] = useState<Filter>({
     sort: {
       by: "added",
-      direction: "asc",
+      direction: "desc",
     },
     complete: "all",
     priority: [],
   });
+  const [filteredTodos, setFilteredTodos] = useState<Todo[]>(
+    filterTodos(todos, filter)
+  );
+
+  useEffect(() => {
+    setFilteredTodos(filterTodos(todos, filter));
+  }, [filter, todos]);
 
   return (
     <Card className="2xl:w-1/5 lg:w-2/5">
@@ -38,7 +46,7 @@ const TodoBox = () => {
         </div>
       </CardHeader>
       <CardContent className="pl-2">
-        {todos.map((todo, index) => (
+        {filteredTodos.map((todo, index) => (
           <TodoItem
             key={index}
             id={todo.id}
