@@ -14,6 +14,7 @@ import { getLocalTodos } from "@/lib/storeTodos";
 import TodoItem from "./TodoItem";
 import FilterTodo from "./FilterTodo";
 import { filterTodos } from "@/lib/filterTodos";
+import { ThemeToggle } from "./ui/theme-toggle";
 
 const TodoBox = () => {
   const [todos, setTodos] = useState<Todo[]>(getLocalTodos());
@@ -35,6 +36,11 @@ const TodoBox = () => {
 
   return (
     <Card className="2xl:w-1/5 lg:w-2/5">
+      <div className="flex justify-end w-full">
+        <div className="m-2">
+          <ThemeToggle />
+        </div>
+      </div>
       <CardHeader>
         <CardTitle className="2xl:text-4xl lg:text-3xl">
           {PROJECT_TITLE}
