@@ -63,7 +63,7 @@ const AddOrUpdateTodo: React.FC<Props> = ({ todos, setTodos, defaultTodo }) => {
     defaultValues: defaultTodo || {
       title: "",
       description: "",
-      dueDate: new Date(),
+      dueDate: new Date(new Date().getTime() + 24 * 60 * 60 * 1000),
       priority: "normal",
     },
   });
