@@ -8,13 +8,22 @@ import {
 import { PROJECT_TITLE } from "@/lib/data/projectInfo";
 import AddOrUpdateTodo from "./AddOrUpdateTodo";
 
-import { Todo } from "@/lib/data/types";
+import { Filter, Todo } from "@/lib/data/types";
 import { useState } from "react";
 import { getLocalTodos } from "@/lib/storeTodos";
 import TodoItem from "./TodoItem";
+import FilterTodo from "./FilterTodo";
 
 const TodoBox = () => {
   const [todos, setTodos] = useState<Todo[]>(getLocalTodos());
+  const [filter, setFilter] = useState<Filter>({
+    sort: {
+      by: "added",
+      direction: "asc",
+    },
+    complete: "all",
+    priority: "all",
+  });
 
   return (
     <Card className="2xl:w-1/5 lg:w-2/5">
@@ -23,7 +32,10 @@ const TodoBox = () => {
           {PROJECT_TITLE}
         </CardTitle>
         <CardDescription>Your Not To Do List</CardDescription>
-        <AddOrUpdateTodo todos={todos} setTodos={setTodos} />
+        <div className="pt-4 flex justify-between">
+          <FilterTodo filter={filter} setFilter={setFilter} />
+          <AddOrUpdateTodo todos={todos} setTodos={setTodos} />
+        </div>
       </CardHeader>
       <CardContent className="pl-2">
         {todos.map((todo, index) => (

@@ -9,3 +9,12 @@ export type Todo = {
   priority: Priority;
   completed: boolean;
 };
+
+export type Filter = {
+  sort: {
+    by: "added" | "dueDate" | "title";
+    direction: "asc" | "desc";
+  };
+  complete: boolean | "all";
+  priority: Priority | "all";
+};
