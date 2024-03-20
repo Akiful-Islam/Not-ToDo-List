@@ -43,7 +43,7 @@ const FilterTodo: React.FC<Props> = ({ filter, setFilter }) => {
   return (
     <Popover>
       <PopoverTrigger>
-        <SlidersHorizontal className="p-[2px] text-black txt hover:bg-accent rounded-md transition-all duration-150 ease-out" />
+        <SlidersHorizontal className="p-[2px] text-popover-foreground txt hover:bg-accent rounded-md transition-all duration-150 ease-out" />
       </PopoverTrigger>
       <PopoverContent>
         <Label className="font-medium text-base">Sort by</Label>
