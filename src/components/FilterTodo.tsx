@@ -43,7 +43,7 @@ const FilterTodo: React.FC<Props> = ({ filter, setFilter }) => {
   return (
     <Popover>
       <PopoverTrigger>
-        <SlidersHorizontal className="p-[2px] text-black txt hover:bg-neutral-100 rounded-md transition-all duration-150 ease-out" />
+        <SlidersHorizontal className="p-[2px] text-black txt hover:bg-accent rounded-md transition-all duration-150 ease-out" />
       </PopoverTrigger>
       <PopoverContent>
         <Label className="font-medium text-base">Sort by</Label>
@@ -89,18 +89,18 @@ const FilterTodo: React.FC<Props> = ({ filter, setFilter }) => {
             });
           }}
         >
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="all" id="option-all" />
-            <Label htmlFor="option-all">All</Label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="complete" id="option-complete" />
-            <Label htmlFor="option-complete">Complete</Label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="pending" id="option-pending" />
-            <Label htmlFor="option-pending">Pending</Label>
-          </div>
+          {["all", "complete", "pending"].map((value, index) => (
+            <div className="flex items-center space-x-2 hover:text-primary transition-colors duration-150">
+              <RadioGroupItem
+                key={index}
+                value={value}
+                id={`option-${value}`}
+              />
+              <Label htmlFor={`option-${value}`} className="">
+                {value.charAt(0).toUpperCase() + value.slice(1)}
+              </Label>
+            </div>
+          ))}
         </RadioGroup>
 
         <Label className="font-medium text-base">Priority</Label>

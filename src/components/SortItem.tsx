@@ -26,7 +26,7 @@ const SortItem: React.FC<Props> = ({
 }) => {
   return (
     <div
-      className="flex justify-between hover:bg-neutral-100 rounded-md transition-all duration-150 ease-out cursor-pointer"
+      className="flex justify-between hover:bg-primary-foreground hover:text-primary rounded-md transition-all duration-150 ease-out cursor-pointer"
       onClick={() => {
         setFilter({
           ...filter,

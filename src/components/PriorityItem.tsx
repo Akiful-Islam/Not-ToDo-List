@@ -12,7 +12,7 @@ type Props = {
 
 const PriorityItem: React.FC<Props> = ({ filter, setFilter, value, label }) => {
   return (
-    <div className="flex items-center space-x-2">
+    <div className="flex items-center space-x-2 hover:text-primary transition-colors duration-150">
       <Checkbox
         id={value}
         checked={filter.priority.includes(value)}
