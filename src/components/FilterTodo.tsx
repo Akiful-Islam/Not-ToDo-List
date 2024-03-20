@@ -30,9 +30,9 @@ const FilterTodo: React.FC<Props> = ({ filter, setFilter }) => {
       </PopoverTrigger>
       <PopoverContent>
         <Label className="font-medium text-base">Sort by</Label>
-        <div className="mt-2 flex flex-col gap-2">
+        <div className="my-2 flex flex-col gap-1">
           <div className="flex justify-between hover:bg-neutral-100 rounded-md transition-all duration-150 ease-out cursor-pointer">
-            <Label htmlFor="added-sort" className="cursor-pointer">
+            <Label htmlFor="added-sort" className="text-sm cursor-pointer">
               Added on
             </Label>
             {filter.sort.by === "added" ? (
@@ -46,7 +46,7 @@ const FilterTodo: React.FC<Props> = ({ filter, setFilter }) => {
             )}
           </div>
           <div className="flex justify-between hover:bg-neutral-100 rounded-md transition-all duration-150 ease-out cursor-pointer">
-            <Label htmlFor="due-sort" className="cursor-pointer">
+            <Label htmlFor="due-sort" className="text-sm cursor-pointer">
               Due Date
             </Label>
             {filter.sort.by === "dueDate" ? (
@@ -60,7 +60,7 @@ const FilterTodo: React.FC<Props> = ({ filter, setFilter }) => {
             )}
           </div>
           <div className="flex justify-between hover:bg-neutral-100 rounded-md transition-all duration-150 ease-out cursor-pointer">
-            <Label htmlFor="title-sort" className="cursor-pointer">
+            <Label htmlFor="title-sort" className="text-sm cursor-pointer">
               Title
             </Label>
             {filter.sort.by === "title" ? (
@@ -74,6 +74,7 @@ const FilterTodo: React.FC<Props> = ({ filter, setFilter }) => {
             )}
           </div>
         </div>
+
         <Label className="font-medium text-base">Show</Label>
         <RadioGroup defaultValue="option-one" className="mt-2 mb-4 flex gap-6">
           <div className="flex items-center space-x-2">
@@ -89,6 +90,31 @@ const FilterTodo: React.FC<Props> = ({ filter, setFilter }) => {
             <Label htmlFor="option-pending">Pending</Label>
           </div>
         </RadioGroup>
+        <Label className="font-medium text-base">Priority</Label>
+        <div className="mt-2">
+          <div className="flex flex-col justify-between gap-2">
+            <div className="flex items-center space-x-2">
+              <Checkbox id="lowest" />
+              <Label htmlFor="lowest">Lowest</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Checkbox id="low" />
+              <Label htmlFor="low">Low</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Checkbox id="normal" />
+              <Label htmlFor="normal">Normal</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Checkbox id="high" />
+              <Label htmlFor="high">High</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Checkbox id="highest" />
+              <Label htmlFor="highest">Highest</Label>
+            </div>
+          </div>
+        </div>
       </PopoverContent>
     </Popover>
   );
