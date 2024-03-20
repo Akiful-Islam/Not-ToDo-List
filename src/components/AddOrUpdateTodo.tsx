@@ -67,19 +67,27 @@ const AddOrUpdateTodo: React.FC<Props> = ({ todos, setTodos, defaultTodo }) => {
   });
 
   const onSubmit = (data: z.infer<typeof todoSchema>) => {
-    console.log(data);
     const newTodo: Todo = {
-      id: todos.length + 1,
+      id: defaultTodo ? defaultTodo.id : todos[todos.length - 1]?.id + 1 || 1,
       title: data.title,
       description: data.description || "",
-      added: new Date(),
       dueDate: data.dueDate,
       priority: data.priority as Priority,
-      completed: false,
+      completed: defaultTodo ? defaultTodo.completed : false,
+      added: defaultTodo ? defaultTodo.added : new Date(),
     };
-    setLocalTodos([...todos, newTodo]);
-    setTodos([...todos, newTodo]);
-    form.reset();
+
+    const updatedTodos = todos.map((todo) =>
+      todo.id === newTodo.id ? newTodo : todo
+    );
+
+    if (!defaultTodo) {
+      updatedTodos.push(newTodo);
+      form.reset();
+    }
+
+    setLocalTodos(updatedTodos);
+    setTodos(updatedTodos);
     setDialogOpen(false);
   };
 
@@ -102,7 +110,7 @@ const AddOrUpdateTodo: React.FC<Props> = ({ todos, setTodos, defaultTodo }) => {
               <TodoPriority form={form} />
             </div>
             <DialogFooter>
-              <Button type="submit">Add</Button>
+              <Button type="submit">{defaultTodo ? "Update" : "Add"}</Button>
             </DialogFooter>
           </form>
         </Form>
