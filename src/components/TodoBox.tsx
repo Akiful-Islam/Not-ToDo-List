@@ -17,7 +17,7 @@ const TodoBox = () => {
   const [todos, setTodos] = useState<Todo[]>(getLocalTodos());
 
   return (
-    <Card className="2xl:w-2/5 lg:w-2/5">
+    <Card className="2xl:w-1/5 lg:w-2/5">
       <CardHeader>
         <CardTitle className="2xl:text-4xl lg:text-3xl">
           {PROJECT_TITLE}
