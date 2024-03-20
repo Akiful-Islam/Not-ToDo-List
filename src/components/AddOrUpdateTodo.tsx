@@ -50,6 +50,8 @@ const AddOrUpdateTodo: React.FC<Props> = ({ todos, setTodos, defaultTodo }) => {
   let buttonLabel = "Add New";
   let dialogHeader = "Add A New not To Do";
   let dialogDescription = "What do you not want to do?";
+
+  let id = todos[todos.length - 1]?.id + 1 || 1;
   if (defaultTodo) {
     defaultTodo.dueDate = new Date(defaultTodo.dueDate);
     buttonLabel = "Edit";
@@ -68,7 +70,7 @@ const AddOrUpdateTodo: React.FC<Props> = ({ todos, setTodos, defaultTodo }) => {
 
   const onSubmit = (data: z.infer<typeof todoSchema>) => {
     const newTodo: Todo = {
-      id: defaultTodo ? defaultTodo.id : todos[todos.length - 1]?.id + 1 || 1,
+      id: defaultTodo ? defaultTodo.id : id++,
       title: data.title,
       description: data.description || "",
       dueDate: data.dueDate,
