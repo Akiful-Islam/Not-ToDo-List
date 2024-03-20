@@ -5,7 +5,14 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { ArrowDownAZIcon, SlidersHorizontal } from "lucide-react";
+import {
+  ArrowDown01Icon,
+  ArrowDownAzIcon,
+  ArrowUp01Icon,
+  ArrowUpAZIcon,
+  ArrowUpDownIcon,
+  SlidersHorizontal,
+} from "lucide-react";
 import { Label } from "@radix-ui/react-label";
 
 type Props = {
@@ -23,22 +30,46 @@ const FilterTodo: React.FC<Props> = ({ filter, setFilter }) => {
         <Label className="font-medium text-base">Sort by</Label>
         <div className="mt-2 flex flex-col gap-2">
           <div className="flex justify-between hover:bg-neutral-100 rounded-md transition-all duration-150 ease-out cursor-pointer">
-            <Label htmlFor="title-sort" className="cursor-pointer">
-              Title
+            <Label htmlFor="added-sort" className="cursor-pointer">
+              Added on
             </Label>
-            <ArrowDownAZIcon className="w-4 h-4" />
+            {filter.sort.by === "added" ? (
+              filter.sort.direction === "asc" ? (
+                <ArrowDown01Icon className="p-[3px]" />
+              ) : (
+                <ArrowUp01Icon className="p-[3px]" />
+              )
+            ) : (
+              <ArrowUpDownIcon className="p-[5px]" />
+            )}
           </div>
           <div className="flex justify-between hover:bg-neutral-100 rounded-md transition-all duration-150 ease-out cursor-pointer">
             <Label htmlFor="due-sort" className="cursor-pointer">
               Due Date
             </Label>
-            <ArrowDownAZIcon className="w-4 h-4" />
+            {filter.sort.by === "dueDate" ? (
+              filter.sort.direction === "asc" ? (
+                <ArrowDown01Icon className="p-[3px]" />
+              ) : (
+                <ArrowUp01Icon className="p-[3px]" />
+              )
+            ) : (
+              <ArrowUpDownIcon className="p-[5px]" />
+            )}
           </div>
           <div className="flex justify-between hover:bg-neutral-100 rounded-md transition-all duration-150 ease-out cursor-pointer">
-            <Label htmlFor="added-sort" className="cursor-pointer">
-              Added on
+            <Label htmlFor="title-sort" className="cursor-pointer">
+              Title
             </Label>
-            <ArrowDownAZIcon className="w-4 h-4" />
+            {filter.sort.by === "title" ? (
+              filter.sort.direction === "asc" ? (
+                <ArrowDownAzIcon className="p-[3px]" />
+              ) : (
+                <ArrowUpAZIcon className="p-[3px]" />
+              )
+            ) : (
+              <ArrowUpDownIcon className="p-[5px]" />
+            )}
           </div>
         </div>
       </PopoverContent>
