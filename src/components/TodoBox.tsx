@@ -16,6 +16,7 @@ import FilterTodo from "./FilterTodo";
 import { filterTodos } from "@/lib/filterTodos";
 import { ThemeToggle } from "./ui/theme-toggle";
 import { Separator } from "@/components/ui/separator";
+import SearchTodo from "./SearchTodo";
 
 const TodoBox = () => {
   const [todos, setTodos] = useState<Todo[]>(getLocalTodos());
@@ -26,6 +27,7 @@ const TodoBox = () => {
     },
     complete: "all",
     priority: [],
+    searchTerm: "",
   });
   const [filteredTodos, setFilteredTodos] = useState<Todo[]>(
     filterTodos(todos, filter)
@@ -58,7 +60,10 @@ const TodoBox = () => {
         </CardTitle>
         <CardDescription>Your Not To Do List</CardDescription>
         <div className="pt-4 flex justify-between">
-          <FilterTodo filter={filter} setFilter={setFilter} />
+          <div className="flex gap-4">
+            <FilterTodo filter={filter} setFilter={setFilter} />
+            <SearchTodo filter={filter} setFilter={setFilter} />
+          </div>
           <AddOrUpdateTodo todos={todos} setTodos={setTodos} />
         </div>
       </CardHeader>

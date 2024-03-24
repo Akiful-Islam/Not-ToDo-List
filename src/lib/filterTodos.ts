@@ -35,6 +35,14 @@ export const filterTodos = (todos: Todo[], filter: Filter): Todo[] => {
     return filter.sort.direction === "asc" ? comparison : -comparison;
   });
 
+  if (filter.searchTerm) {
+    filteredTodos = filteredTodos.filter(
+      (todo) =>
+        todo.title.toLowerCase().includes(filter.searchTerm.toLowerCase()) ||
+        todo.description.toLowerCase().includes(filter.searchTerm.toLowerCase())
+    );
+  }
+
   return filteredTodos;
 };
 

@@ -17,4 +17,5 @@ export type Filter = {
   };
   complete: boolean | "all";
   priority: Priority[];
+  searchTerm: string;
 };

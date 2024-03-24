@@ -37,6 +37,7 @@ const SearchTodo: React.FC<Props> = ({ filter, setFilter }) => {
           </Label>
           <Input
             id="search-input"
+            defaultValue={filter.searchTerm}
             placeholder="Search To Don'ts"
             onChange={(e) => onSearch(e.target.value)}
           />
