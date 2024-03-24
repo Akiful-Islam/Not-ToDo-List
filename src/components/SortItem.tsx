@@ -48,17 +48,17 @@ const SortItem: React.FC<Props> = ({
       {filter.sort.by === sortType ? (
         filter.sort.direction === "asc" ? (
           iconType === "AZ" ? (
-            <ArrowDownAZIcon className="p-[3px]" />
+            <ArrowDownAZIcon className="text-primary" size="1rem" />
           ) : (
-            <ArrowDown01Icon className="p-[3px]" />
+            <ArrowDown01Icon className="text-primary" size="1rem" />
           )
         ) : iconType === "AZ" ? (
-          <ArrowUpAZIcon className="p-[3px]" />
+          <ArrowUpAZIcon className="text-primary" size="1rem" />
         ) : (
-          <ArrowUp01Icon className="p-[3px]" />
+          <ArrowUp01Icon className="text-primary" size="1rem" />
         )
       ) : (
-        <ArrowUpDownIcon className="p-[5px]" />
+        <ArrowUpDownIcon className="" size="1rem" />
       )}
     </div>
   );
