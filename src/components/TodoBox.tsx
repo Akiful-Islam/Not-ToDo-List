@@ -52,9 +52,9 @@ const TodoBox = () => {
         </div>
       </CardHeader>
       <CardContent className="pl-2">
-        {filteredTodos.map((todo, index) => (
+        {filteredTodos.map((todo) => (
           <TodoItem
-            key={index}
+            key={todo.id}
             id={todo.id}
             title={todo.title}
             description={todo.description}

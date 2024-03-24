@@ -16,7 +16,7 @@ import { setLocalTodos } from "@/lib/storeTodos";
 import AddOrUpdateTodo from "./AddOrUpdateTodo";
 
 type Props = {
-  id: number;
+  id: string;
   title: string;
   description: string;
   added: Date;

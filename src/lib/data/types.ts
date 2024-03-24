@@ -1,7 +1,7 @@
 export type Priority = "lowest" | "low" | "normal" | "high" | "highest";
 
 export type Todo = {
-  id: number;
+  id: string;
   title: string;
   description: string;
   added: Date;
