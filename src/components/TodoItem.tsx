@@ -14,6 +14,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { setLocalTodos } from "@/lib/storeTodos";
 import AddOrUpdateTodo from "./AddOrUpdateTodo";
+import { Circle, CircleCheck } from "lucide-react";
 
 type Props = {
   id: string;
@@ -80,16 +81,23 @@ const TodoItem: React.FC<Props> = ({
   return (
     <Card className="hover:scale-105 2xl:hover:scale-[1.01] xl:hover:scale-[1.02] lg:hover:scale-[1.03] transition-all ease-in-out duration-100 m-2 cursor-pointer w-full mb-4">
       <CardContent
-        className={`px-4 py-2 text-left flex justify-between ${
+        className={`px-4 py-2 text-left flex justify-between items-center ${
           complete ? "line-through" : ""
         }`}
         onClick={handleTodoClick}
       >
-        <Label
-          className={`hover:underline transition-all ease-in duration-75 cursor-pointer`}
-        >
-          {title}
-        </Label>
+        <div className="flex items-center gap-4">
+          {complete ? (
+            <CircleCheck className="text-green-400" size="1rem" />
+          ) : (
+            <Circle className="text-input" size="1rem" />
+          )}
+          <Label
+            className={`hover:underline transition-all ease-in duration-75 cursor-pointer`}
+          >
+            {title}
+          </Label>
+        </div>
         <Checkbox
           id="todo-check"
           defaultChecked={complete}
