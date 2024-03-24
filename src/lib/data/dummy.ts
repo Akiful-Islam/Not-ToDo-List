@@ -1,8 +1,9 @@
 import { Todo } from "./types";
+import { uid } from "uid";
 
 export const dummyData: Todo[] = [
   {
-    id: 1,
+    id: uid(),
     title: "Survive Monday Morning",
     description: "Summon the strength to go to work and face the week ahead",
     added: new Date("2022-03-04"),
@@ -11,7 +12,7 @@ export const dummyData: Todo[] = [
     completed: false,
   },
   {
-    id: 2,
+    id: uid(),
     title: "Tackle the Dreaded Inbox",
     description: "Conquer the overflowing email inbox and achieve inbox zero",
     added: new Date("2023-04-05"),
@@ -20,7 +21,7 @@ export const dummyData: Todo[] = [
     completed: true,
   },
   {
-    id: 3,
+    id: uid(),
     title: "Conquer the Commute",
     description: "Find the most efficient route and survive the daily commute",
     added: new Date("2024-02-01"),
@@ -29,7 +30,7 @@ export const dummyData: Todo[] = [
     completed: true,
   },
   {
-    id: 4,
+    id: uid(),
     title: "Lunch Break Bliss",
     description: "Discover new lunch spots and enjoy a satisfying midday meal",
     added: new Date("2024-02-04"),
@@ -38,7 +39,7 @@ export const dummyData: Todo[] = [
     completed: false,
   },
   {
-    id: 5,
+    id: uid(),
     title: "Unwind After Work",
     description:
       "Engage in relaxing activities to unwind after a long day at work",
