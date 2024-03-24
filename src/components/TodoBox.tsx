@@ -15,6 +15,7 @@ import TodoItem from "./TodoItem";
 import FilterTodo from "./FilterTodo";
 import { filterTodos } from "@/lib/filterTodos";
 import { ThemeToggle } from "./ui/theme-toggle";
+import { Separator } from "@/components/ui/separator";
 
 const TodoBox = () => {
   const [todos, setTodos] = useState<Todo[]>(getLocalTodos());
@@ -30,9 +31,19 @@ const TodoBox = () => {
     filterTodos(todos, filter)
   );
 
+  const [completeTodos, setCompleteTodos] = useState(
+    filteredTodos.filter((todo) => todo.completed)
+  );
+
+  const [inCompleteTodos, setInCompleteTodos] = useState(
+    filteredTodos.filter((todo) => !todo.completed)
+  );
+
   useEffect(() => {
     setFilteredTodos(filterTodos(todos, filter));
-  }, [filter, todos]);
+    setCompleteTodos(filteredTodos.filter((todo) => todo.completed));
+    setInCompleteTodos(filteredTodos.filter((todo) => !todo.completed));
+  }, [filter, todos, filteredTodos]);
 
   return (
     <Card className="2xl:w-1/5 lg:w-2/5">
@@ -52,7 +63,24 @@ const TodoBox = () => {
         </div>
       </CardHeader>
       <CardContent className="pl-2">
-        {filteredTodos.map((todo) => (
+        {inCompleteTodos.map((todo) => (
+          <TodoItem
+            key={todo.id}
+            id={todo.id}
+            title={todo.title}
+            description={todo.description}
+            added={todo.added}
+            dueDate={todo.dueDate}
+            priority={todo.priority}
+            completed={todo.completed}
+            todos={todos}
+            setTodos={setTodos}
+          />
+        ))}
+        {inCompleteTodos.length > 0 && completeTodos.length > 0 && (
+          <Separator className="my-5" />
+        )}
+        {completeTodos.map((todo) => (
           <TodoItem
             key={todo.id}
             id={todo.id}
