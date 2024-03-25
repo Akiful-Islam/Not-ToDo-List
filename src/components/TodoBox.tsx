@@ -47,6 +47,18 @@ const TodoBox = () => {
     setInCompleteTodos(filteredTodos.filter((todo) => !todo.completed));
   }, [filter, todos, filteredTodos]);
 
+  const resetFilter = () => {
+    setFilter({
+      sort: {
+        by: "added",
+        direction: "desc",
+      },
+      complete: "all",
+      priority: [],
+      searchTerm: "",
+    });
+  };
+
   return (
     <Card className="2xl:w-1/5 lg:w-2/5">
       <div className="flex justify-end w-full">
@@ -61,7 +73,11 @@ const TodoBox = () => {
         <CardDescription>Your Not To Do List</CardDescription>
         <div className="pt-4 flex justify-between">
           <div className="flex gap-4">
-            <FilterTodo filter={filter} setFilter={setFilter} />
+            <FilterTodo
+              filter={filter}
+              setFilter={setFilter}
+              resetFilter={resetFilter}
+            />
             <SearchTodo filter={filter} setFilter={setFilter} />
           </div>
           <AddOrUpdateTodo todos={todos} setTodos={setTodos} />
