@@ -1,5 +1,5 @@
 import { Filter } from "@/lib/data/types";
-import React from "react";
+import React, { useState } from "react";
 import {
   Popover,
   PopoverContent,
@@ -15,6 +15,7 @@ type Props = {
 };
 
 const SearchTodo: React.FC<Props> = ({ filter, setFilter }) => {
+  const [isOpen, setIsOpen] = useState(false);
   const onSearch = (searchTerm: string) => {
     setFilter({
       ...filter,
@@ -23,7 +24,7 @@ const SearchTodo: React.FC<Props> = ({ filter, setFilter }) => {
   };
 
   return (
-    <Popover>
+    <Popover open={isOpen} onOpenChange={setIsOpen}>
       <PopoverTrigger>
         <Search
           className="text-popover-foreground txt hover:bg-accent rounded-md transition-all duration-150 ease-out"
@@ -31,16 +32,20 @@ const SearchTodo: React.FC<Props> = ({ filter, setFilter }) => {
         />
       </PopoverTrigger>
       <PopoverContent>
-        <div className="flex items-center gap-4">
-          <Label htmlFor="search-input">
-            <Search size="1.25rem" className="text-input" />
-          </Label>
+        <div className="flex items-center gap-2">
           <Input
             id="search-input"
             defaultValue={filter.searchTerm}
             placeholder="Search To Don'ts"
             onChange={(e) => onSearch(e.target.value)}
           />
+          <Label
+            htmlFor="search-input"
+            onClick={() => setIsOpen(false)}
+            className="text-input hover:text-primary active:text-primary transition-colors ease-out duration-150"
+          >
+            <Search size="1.25rem" />
+          </Label>
         </div>
       </PopoverContent>
     </Popover>

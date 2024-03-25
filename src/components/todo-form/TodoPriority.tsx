@@ -39,11 +39,11 @@ const TodoPriority = ({ form }: Props) => {
         <FormItem>
           <div className="grid grid-cols-4 items-center gap-4">
             <FormLabel htmlFor="priority" className="text-right">
-              Due Date
+              Priority
             </FormLabel>
             <Select onValueChange={field.onChange} defaultValue={field.value}>
               <FormControl>
-                <SelectTrigger>
+                <SelectTrigger className="w-28">
                   <SelectValue placeholder="Select priority" />
                 </SelectTrigger>
               </FormControl>
