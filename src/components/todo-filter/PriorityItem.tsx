@@ -28,7 +28,6 @@ const PriorityItem: React.FC<Props> = ({ filter, setFilter, value, label }) => {
               priority: filter.priority.filter((p) => p !== value),
             });
           }
-          console.log(filter);
         }}
       />
       <Label htmlFor={value}>{label}</Label>
