@@ -13,7 +13,7 @@ import {
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { setLocalTodos } from "@/lib/storeTodos";
-import AddOrUpdateTodo from "./AddOrUpdateTodo";
+import AddOrUpdateTodo from "./todo-form/AddOrUpdateTodo";
 import { Circle, CircleCheck } from "lucide-react";
 
 type Props = {

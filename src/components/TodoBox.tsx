@@ -6,17 +6,17 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { PROJECT_TITLE } from "@/lib/data/projectInfo";
-import AddOrUpdateTodo from "./AddOrUpdateTodo";
+import AddOrUpdateTodo from "./todo-form/AddOrUpdateTodo";
 
 import { Filter, Todo } from "@/lib/data/types";
 import { useEffect, useState } from "react";
 import { getLocalTodos } from "@/lib/storeTodos";
 import TodoItem from "./TodoItem";
-import FilterTodo from "./FilterTodo";
+import FilterTodo from "./todo-filter/FilterTodo";
 import { filterTodos } from "@/lib/filterTodos";
 import { ThemeToggle } from "./ui/theme-toggle";
 import { Separator } from "@/components/ui/separator";
-import SearchTodo from "./SearchTodo";
+import SearchTodo from "./todo-filter/SearchTodo";
 
 const TodoBox = () => {
   const [todos, setTodos] = useState<Todo[]>(getLocalTodos());
